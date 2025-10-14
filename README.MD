@@ -1,10 +1,10 @@
-# 🇮🇳 Indian Script Transliterator
+#  Indian Script Transliterator
 
 A cross-platform Flutter + Flask app that converts text in Indian scripts from an image into transliterated text (Latin or another Indian script) and optionally plays pronunciation audio.
 
 ---
 
-## 🧩 Overview
+##  Overview
 
 **Features**
 
@@ -16,9 +16,9 @@ A cross-platform Flutter + Flask app that converts text in Indian scripts from a
 
 ---
 
-## ⚙️ 1. Prerequisites
+##  1. Prerequisites
 
-### 🖥️ On your PC (Server)
+###  On your PC (Server)
 
 * Python 3.8+ (tested up to 3.11)
 * [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) installed and in PATH
@@ -31,14 +31,14 @@ A cross-platform Flutter + Flask app that converts text in Indian scripts from a
     ```
 * Recommended: virtual environment (`venv`)
 
-### 📱 On your phone
+###  On your phone
 
 * Flutter SDK (≥ 3.3.0)
 * Android device or emulator with network access to your PC (same Wi-Fi network)
 
 ---
 
-## 🖥️ 2. Backend Setup (Flask)
+##  2. Backend Setup (Flask)
 
 ### Install dependencies
 
@@ -85,8 +85,8 @@ python server.py
 Expected output:
 
 ```
-🚀 Starting server on 0.0.0.0:5000
-📡 Make sure PHONE can access: http://192.168.31.242:5000
+ Starting server on 0.0.0.0:5000
+ Make sure PHONE can access: http://192.168.31.242:5000
 ```
 
 ### Test
@@ -105,7 +105,7 @@ You should see:
 
 ---
 
-## 📱 3. Mobile App Setup (Flutter)
+##  3. Mobile App Setup (Flutter)
 
 ### Edit environment in `pubspec.yaml`
 
@@ -145,7 +145,7 @@ In **`lib/main.dart`**, set:
 const String BASE_URL = "http://192.168.31.242:5000";
 ```
 
-⚠️ Make sure there are **two slashes** after `http:`.
+Make sure there are **two slashes** after `http:`.
 
 ### Android Manifest fixes
 
@@ -173,7 +173,7 @@ Then pick an image → tap **Upload & Transliterate** → test **Play Pronunciat
 
 ---
 
-## 🧠 4. API Usage (for testing)
+##  4. API Usage (for testing)
 
 Upload an image manually with `curl`:
 
@@ -200,21 +200,21 @@ Example JSON response:
 
 ---
 
-## 🧩 5. Troubleshooting
+##  5. Troubleshooting
 
-### ❌ “Upload failed” or “Server error 500”
+###  “Upload failed” or “Server error 500”
 
 * Check Flask console output for stack trace.
 * Ensure Flask and Flutter both use same IP/port (`192.168.31.242:5000`).
 * Verify Tesseract OCR is installed and callable.
 
-### 🎧 Audio not playing
+### Audio not playing
 
 * Try opening `audio_url` in your phone’s browser — if it plays, the network is OK.
 * Check `AndroidManifest.xml` has `usesCleartextTraffic="true"`.
 * Ensure you didn’t misspell the URL (`http://`, not `http:/`).
 
-### 🧾 OCR inaccurate
+###  OCR inaccurate
 
 * Improve image lighting and clarity.
 * Install all relevant Tesseract language packs.
@@ -222,7 +222,7 @@ Example JSON response:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 project-root/
@@ -242,7 +242,7 @@ project-root/
 
 ---
 
-## 🧰 6. Technology Stack
+##  6. Technology Stack
 
 | Component        | Technology                       | Description                   |
 | ---------------- | -------------------------------- | ----------------------------- |
@@ -255,7 +255,7 @@ project-root/
 
 ---
 
-## ✅ 7. Quick Summary
+##  7. Quick Summary
 
 | Step                | Command                                             |
 | ------------------- | --------------------------------------------------- |
