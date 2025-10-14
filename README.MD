@@ -1,4 +1,4 @@
-#  Indian Script Transliterator
+#  Transliteration Tool For Street Signs
 
 A cross-platform Flutter + Flask app that converts text in Indian scripts from an image into transliterated text (Latin or another Indian script) and optionally plays pronunciation audio.
 
