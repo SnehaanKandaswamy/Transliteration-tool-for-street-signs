@@ -69,9 +69,7 @@ TTS_LANG_MAP = {
 
 DEFAULT_OCR_LANG = "eng+hin+tam+tel+kan+mal+ben+guj+pan"
 
-# ------------------------------
-# Helpers
-# ------------------------------
+
 def detect_script(text: str) -> str:
     if not text or not text.strip():
         return "unknown"
@@ -127,13 +125,12 @@ def _safe_tts_save_chunks(text: str, lang: str, out_path: str) -> bool:
     Returns True on success.
     """
     try:
-        # naive chunking by sentence punctuation
+        
         pieces = re.split(r'(?<=[\.\?\!।])\s+', text)
-        # If no splits, fallback to fixed-size chunks
+       
         if len(pieces) == 0:
             pieces = [text]
-        # If too many small pieces, merge into a few bigger chunks
-        # Limit pieces to reasonable number (e.g. 10)
+        
         if len(pieces) > 12:
             joined = []
             tmp = ""
@@ -147,7 +144,7 @@ def _safe_tts_save_chunks(text: str, lang: str, out_path: str) -> bool:
                 joined.append(tmp)
             pieces = joined
 
-        # create a single mp3 by writing temp mp3s and concatenating binary (gTTS mp3s have headers; simple binary concat works for many players but is not perfect)
+        
         temp_files = []
         for i, piece in enumerate(pieces):
             piece = piece.strip()
@@ -193,7 +190,7 @@ def generate_tts_audio(text: str, lang_code: str) -> str:
         os.makedirs(AUDIO_FOLDER, exist_ok=True)
         filename = f"tts_{uuid.uuid4().hex}.mp3"
         out_path = os.path.join(AUDIO_FOLDER, filename)
-        # attempt straightforward save first
+        
         try:
             tts = gTTS(text=text, lang=lang_code)
             tts.save(out_path)
@@ -211,9 +208,7 @@ def generate_tts_audio(text: str, lang_code: str) -> str:
         app.logger.exception("TTS error: %s", e)
         return ""
 
-# ------------------------------
-# Range serving helper (partial content)
-# ------------------------------
+
 def send_file_partial(path: str):
     """
     Serve file supporting Range requests, returning a Flask Response.
@@ -245,9 +240,7 @@ def send_file_partial(path: str):
     rv.headers.add('Content-Length', str(length))
     return rv
 
-# ------------------------------
-# Routes
-# ------------------------------
+
 @app.route('/transliterate', methods=['POST'])
 def transliterate_image():
     try:
@@ -356,9 +349,7 @@ def serve_audio(filename):
 def home():
     return jsonify({"status": "running", "service": "Indian Script Transliteration API", "version": "1.5"}), 200
 
-# ------------------------------
-# Run server
-# ------------------------------
+
 if __name__ == '__main__':
     print("🚀 Starting server on 0.0.0.0:5000")
     print(f"📡 Make sure PHONE can access: http://{SERVER_IP}:5000")
